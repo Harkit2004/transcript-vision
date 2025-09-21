@@ -14,15 +14,15 @@ const Navigation = () => {
   ];
 
   return (
-    <Card className="p-4 shadow-elegant bg-card/95 backdrop-blur-sm border-border/50">
+    <Card className="p-4 shadow-prisma bg-card/98 backdrop-blur-sm border-border/80">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gradient-scientific text-white">
+          <div className="p-2 rounded-lg bg-gradient-scientific text-white shadow-glow">
             <Microscope className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">SCVI Gene Analysis</h1>
-            <p className="text-sm text-muted-foreground">Transcriptome to Vector Embeddings</p>
+            <h1 className="text-xl font-bold text-foreground">PRISMA</h1>
+            <p className="text-sm text-muted-foreground">AI-Powered Gene Expression Analysis</p>
           </div>
         </div>
         

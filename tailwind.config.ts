@@ -68,11 +68,13 @@ export default {
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-scientific': 'var(--gradient-scientific)',
+        'gradient-dark': 'var(--gradient-dark)',
         'gradient-subtle': 'var(--gradient-subtle)',
       },
       boxShadow: {
         'elegant': 'var(--shadow-elegant)',
         'glow': 'var(--shadow-glow)',
+        'prisma': '0 0 50px hsl(var(--primary) / 0.3), 0 0 100px hsl(var(--accent) / 0.2)',
       },
       borderRadius: {
         lg: "var(--radius)",

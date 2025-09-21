@@ -108,7 +108,7 @@ const Upload = () => {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/95 backdrop-blur-sm border-border/80">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <UploadIcon className="h-6 w-6 text-primary" />
@@ -120,7 +120,7 @@ const Upload = () => {
             <Info className="h-4 w-4" />
             <AlertDescription>
               Upload your AnnData file (.h5ad) containing single-cell RNA-seq data. 
-              The SCVI model will process this data to generate 30-dimensional gene expression embeddings.
+              The PRISMA AI model will process this data to generate 30-dimensional gene expression embeddings.
             </AlertDescription>
           </Alert>
 
@@ -181,7 +181,7 @@ const Upload = () => {
                   <p className="text-xs text-muted-foreground">
                     {uploadProgress < 30 && "Uploading file..."}
                     {uploadProgress >= 30 && uploadProgress < 60 && "Validating data format..."}
-                    {uploadProgress >= 60 && uploadProgress < 90 && "Processing with SCVI..."}
+                    {uploadProgress >= 60 && uploadProgress < 90 && "Processing with PRISMA AI..."}
                     {uploadProgress >= 90 && "Finalizing analysis..."}
                   </p>
                 </div>
@@ -191,7 +191,7 @@ const Upload = () => {
 
           {/* Upload Success */}
           {uploadComplete && (
-            <Card className="bg-scientific-blue/5 border-scientific-blue/20">
+            <Card className="bg-scientific-blue/10 border-scientific-blue/30 shadow-glow">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-6 w-6 text-scientific-blue" />
@@ -201,7 +201,7 @@ const Upload = () => {
                       Your gene expression data has been successfully processed into 30D embeddings.
                     </p>
                   </div>
-                  <Button variant="scientific" asChild>
+                  <Button variant="prisma" asChild>
                     <Link to="/results" className="gap-2">
                       View Results
                       <ArrowRight className="h-4 w-4" />
@@ -219,7 +219,7 @@ const Upload = () => {
               disabled={isUploading}
               size="lg"
               className="w-full"
-              variant="scientific"
+              variant="prisma"
             >
               {isUploading ? (
                 <>
@@ -229,7 +229,7 @@ const Upload = () => {
               ) : (
                 <>
                   <UploadIcon className="h-4 w-4 mr-2" />
-                  Start SCVI Analysis
+                  Start PRISMA Analysis
                 </>
               )}
             </Button>
@@ -238,7 +238,7 @@ const Upload = () => {
       </Card>
 
       {/* File Requirements */}
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/90 backdrop-blur-sm border-border/80">
         <CardHeader>
           <CardTitle className="text-lg">File Requirements</CardTitle>
         </CardHeader>

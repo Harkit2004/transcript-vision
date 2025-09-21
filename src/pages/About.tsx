@@ -17,14 +17,14 @@ const About = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Introduction */}
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/95 backdrop-blur-sm border-border/80">
         <CardHeader>
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-gradient-scientific text-white">
               <BookOpen className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-2xl">About SCVI Gene Analysis</CardTitle>
+              <CardTitle className="text-2xl">About PRISMA</CardTitle>
               <p className="text-muted-foreground">
                 Understanding the technology behind mechanism of action prediction
               </p>
@@ -33,16 +33,16 @@ const About = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed">
-            Our platform leverages cutting-edge computational biology techniques to transform 
+            Our PRISMA platform leverages cutting-edge computational biology techniques to transform 
             raw transcriptome data into actionable insights about compound mechanisms of action. 
-            By combining Single-Cell Variational Inference (SCVI) with advanced machine learning, 
+            By combining advanced AI models with machine learning, 
             we enable researchers to predict how compounds affect cellular processes.
           </p>
         </CardContent>
       </Card>
 
       {/* Technology Stack */}
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/90 backdrop-blur-sm border-border/80">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Microscope className="h-5 w-5 text-primary" />
@@ -52,13 +52,13 @@ const About = () => {
         <CardContent>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <div className="p-4 rounded-lg bg-scientific-blue/5 border border-scientific-blue/20">
+              <div className="p-4 rounded-lg bg-scientific-blue/10 border border-scientific-blue/30 shadow-glow">
                 <div className="flex items-center gap-2 mb-2">
                   <Database className="h-5 w-5 text-scientific-blue" />
-                  <h3 className="font-semibold">SCVI (Single-Cell Variational Inference)</h3>
+                  <h3 className="font-semibold">PRISMA AI Models</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  A probabilistic framework for analyzing single-cell RNA sequencing data, 
+                  A sophisticated AI framework for analyzing single-cell RNA sequencing data, 
                   enabling robust dimensionality reduction and normalization of gene expression profiles.
                 </p>
                 <Badge variant="outline" className="mt-2 bg-scientific-blue/10 text-scientific-blue border-scientific-blue/20">
@@ -66,7 +66,7 @@ const About = () => {
                 </Badge>
               </div>
               
-              <div className="p-4 rounded-lg bg-scientific-teal/5 border border-scientific-teal/20">
+              <div className="p-4 rounded-lg bg-scientific-teal/10 border border-scientific-teal/30 shadow-glow">
                 <div className="flex items-center gap-2 mb-2">
                   <Brain className="h-5 w-5 text-scientific-teal" />
                   <h3 className="font-semibold">Multi-Classification Neural Networks</h3>
@@ -82,7 +82,7 @@ const About = () => {
             </div>
             
             <div className="space-y-4">
-              <div className="p-4 rounded-lg bg-data-green/5 border border-data-green/20">
+              <div className="p-4 rounded-lg bg-data-green/10 border border-data-green/30 shadow-glow">
                 <div className="flex items-center gap-2 mb-2">
                   <Database className="h-5 w-5 text-data-green" />
                   <h3 className="font-semibold">AnnData Integration</h3>
@@ -96,7 +96,7 @@ const About = () => {
                 </Badge>
               </div>
               
-              <div className="p-4 rounded-lg bg-analysis-purple/5 border border-analysis-purple/20">
+              <div className="p-4 rounded-lg bg-analysis-purple/10 border border-analysis-purple/30 shadow-glow">
                 <div className="flex items-center gap-2 mb-2">
                   <ArrowRight className="h-5 w-5 text-analysis-purple" />
                   <h3 className="font-semibold">Automated Pipeline</h3>
@@ -115,7 +115,7 @@ const About = () => {
       </Card>
 
       {/* Workflow Details */}
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/90 backdrop-blur-sm border-border/80">
         <CardHeader>
           <CardTitle>Analysis Workflow</CardTitle>
         </CardHeader>
@@ -140,9 +140,9 @@ const About = () => {
                 2
               </div>
               <div>
-                <h4 className="font-semibold mb-1">SCVI Preprocessing</h4>
+                <h4 className="font-semibold mb-1">PRISMA Preprocessing</h4>
                 <p className="text-sm text-muted-foreground">
-                  Raw transcriptome data is normalized and prepared for variational inference modeling.
+                  Raw transcriptome data is normalized and prepared for AI inference modeling.
                 </p>
               </div>
             </div>
@@ -156,7 +156,7 @@ const About = () => {
               <div>
                 <h4 className="font-semibold mb-1">Encoding & Decoding</h4>
                 <p className="text-sm text-muted-foreground">
-                  SCVI model encodes gene expression into latent space, then decodes to 30-dimensional embeddings.
+                  PRISMA model encodes gene expression into latent space, then decodes to 30-dimensional embeddings.
                 </p>
               </div>
             </div>
@@ -193,7 +193,7 @@ const About = () => {
       </Card>
 
       {/* Technical Specifications */}
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/90 backdrop-blur-sm border-border/80">
         <CardHeader>
           <CardTitle>Technical Specifications</CardTitle>
         </CardHeader>
@@ -247,15 +247,15 @@ const About = () => {
       </Card>
 
       {/* Getting Started */}
-      <Card className="bg-gradient-subtle border-primary/20 shadow-elegant">
+      <Card className="bg-gradient-subtle border-primary/30 shadow-prisma bg-card/80 backdrop-blur-sm">
         <CardContent className="text-center py-8">
           <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Upload your AnnData file and experience the power of SCVI-driven 
+            Upload your AnnData file and experience the power of PRISMA-driven 
             mechanism of action prediction for your transcriptome research.
           </p>
           <div className="flex gap-4 justify-center">
-            <Button variant="scientific" size="lg" asChild>
+            <Button variant="prisma" size="lg" asChild>
               <Link to="/upload" className="gap-2">
                 Start Analysis
                 <ArrowRight className="h-4 w-4" />

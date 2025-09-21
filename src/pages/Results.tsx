@@ -53,7 +53,7 @@ const Results = () => {
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header */}
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/95 backdrop-blur-sm border-border/80">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -61,8 +61,8 @@ const Results = () => {
                 <BarChart3 className="h-6 w-6" />
               </div>
               <div>
-                <CardTitle className="text-2xl">Analysis Results</CardTitle>
-                <p className="text-muted-foreground">SCVI-processed gene expression predictions</p>
+                <CardTitle className="text-2xl">PRISMA Analysis Results</CardTitle>
+                <p className="text-muted-foreground">AI-powered gene expression predictions</p>
               </div>
             </div>
             <div className="flex gap-2">
@@ -70,7 +70,7 @@ const Results = () => {
                 <Download className="h-4 w-4 mr-2" />
                 Export Results
               </Button>
-              <Button variant="scientific" size="sm" asChild>
+              <Button variant="prisma" size="sm" asChild>
                 <Link to="/upload">
                   New Analysis
                 </Link>
@@ -82,19 +82,19 @@ const Results = () => {
 
       {/* Status Cards */}
       <div className="grid md:grid-cols-3 gap-4">
-        <Card className="shadow-elegant">
+        <Card className="shadow-prisma bg-card/90 backdrop-blur-sm border-border/80">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <CheckCircle className="h-8 w-8 text-scientific-blue" />
               <div>
                 <p className="font-medium">Processing Complete</p>
-                <p className="text-sm text-muted-foreground">SCVI analysis successful</p>
+                <p className="text-sm text-muted-foreground">PRISMA analysis successful</p>
               </div>
             </div>
           </CardContent>
         </Card>
         
-        <Card className="shadow-elegant">
+        <Card className="shadow-prisma bg-card/90 backdrop-blur-sm border-border/80">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <Microscope className="h-8 w-8 text-scientific-teal" />
@@ -106,7 +106,7 @@ const Results = () => {
           </CardContent>
         </Card>
         
-        <Card className="shadow-elegant">
+        <Card className="shadow-prisma bg-card/90 backdrop-blur-sm border-border/80">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <Clock className="h-8 w-8 text-data-green" />
@@ -120,13 +120,13 @@ const Results = () => {
       </div>
 
       {/* Main Results */}
-      <Card className="shadow-elegant">
+      <Card className="shadow-prisma bg-card/95 backdrop-blur-sm border-border/80">
         <CardContent className="p-6">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="predictions">Mechanism Predictions</TabsTrigger>
-              <TabsTrigger value="embeddings">SCVI Embeddings</TabsTrigger>
-              <TabsTrigger value="details">Analysis Details</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 bg-muted/80 backdrop-blur-sm">
+              <TabsTrigger value="predictions" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Mechanism Predictions</TabsTrigger>
+              <TabsTrigger value="embeddings" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">PRISMA Embeddings</TabsTrigger>
+              <TabsTrigger value="details" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Analysis Details</TabsTrigger>
             </TabsList>
 
             <TabsContent value="predictions" className="space-y-4 mt-6">
@@ -137,7 +137,7 @@ const Results = () => {
               
               <div className="space-y-4">
                 {mockPredictions.map((prediction, index) => (
-                  <Card key={index} className="shadow-sm hover:shadow-md transition-shadow">
+                  <Card key={index} className="shadow-elegant hover:shadow-glow transition-all duration-300 bg-card/80 backdrop-blur-sm border-border/80">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4 flex-1">
@@ -181,11 +181,11 @@ const Results = () => {
             <TabsContent value="embeddings" className="space-y-4 mt-6">
               <div className="flex items-center gap-2 mb-4">
                 <Microscope className="h-5 w-5 text-primary" />
-                <h3 className="text-lg font-semibold">SCVI Embedding Summary</h3>
+                <h3 className="text-lg font-semibold">PRISMA Embedding Summary</h3>
               </div>
               
               <div className="grid md:grid-cols-2 gap-6">
-                <Card className="shadow-sm">
+                <Card className="shadow-glow bg-card/80 backdrop-blur-sm border-border/80">
                   <CardHeader>
                     <CardTitle className="text-lg">Dimensionality Reduction</CardTitle>
                   </CardHeader>
@@ -205,14 +205,14 @@ const Results = () => {
                   </CardContent>
                 </Card>
                 
-                <Card className="shadow-sm">
+                <Card className="shadow-glow bg-card/80 backdrop-blur-sm border-border/80">
                   <CardHeader>
                     <CardTitle className="text-lg">Processing Statistics</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">Model Type</span>
-                      <span className="font-bold">SCVI</span>
+                      <span className="font-bold">PRISMA</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">Processing Time</span>
@@ -235,14 +235,14 @@ const Results = () => {
                 <h3 className="text-lg font-semibold">Technical Details</h3>
               </div>
               
-              <Card className="shadow-sm">
+              <Card className="shadow-glow bg-card/80 backdrop-blur-sm border-border/80">
                 <CardContent className="p-6">
                   <div className="prose prose-sm max-w-none">
                     <h4 className="text-base font-semibold mb-3">Analysis Pipeline</h4>
                     <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
                       <li>Raw transcriptome data was loaded from the uploaded AnnData file</li>
-                      <li>Gene expression matrix was normalized using standard SCVI preprocessing</li>
-                      <li>SCVI model encoded the data into latent space representations</li>
+                      <li>Gene expression matrix was normalized using standard PRISMA preprocessing</li>
+                      <li>PRISMA model encoded the data into latent space representations</li>
                       <li>Latent representations were decoded to 30-dimensional embeddings</li>
                       <li>Multi-classification model predicted mechanism of action categories</li>
                       <li>Confidence scores were calculated based on prediction probabilities</li>
@@ -251,7 +251,7 @@ const Results = () => {
                     <h4 className="text-base font-semibold mb-3 mt-6">Model Information</h4>
                     <div className="grid md:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p><strong>SCVI Version:</strong> 1.0.3</p>
+                        <p><strong>PRISMA Version:</strong> 2.0.1</p>
                         <p><strong>Embedding Dimensions:</strong> 30</p>
                         <p><strong>Training Epochs:</strong> 400</p>
                       </div>

@@ -9,14 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant transition-all duration-300",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-elegant",
+        outline: "border border-border bg-card hover:bg-accent hover:text-accent-foreground shadow-sm hover:shadow-elegant transition-all duration-300",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-elegant",
+        ghost: "hover:bg-accent hover:text-accent-foreground transition-all duration-300",
         link: "text-primary underline-offset-4 hover:underline",
-        scientific: "bg-gradient-scientific text-white hover:shadow-glow transition-all duration-300",
-        accent: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-elegant",
+        scientific: "bg-gradient-scientific text-white hover:shadow-prisma transition-all duration-300 border-0",
+        accent: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-glow transition-all duration-300",
+        prisma: "bg-gradient-primary text-white hover:shadow-prisma hover:scale-105 transition-all duration-300 border-0",
       },
       size: {
         default: "h-10 px-4 py-2",
