@@ -16,11 +16,18 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+interface PredictionResult {
+  filename: string;
+  prediction: object | null;
+  model_endpoint: object | null;
+  status: string;
+}
+
 const Upload = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [uploadComplete, setUploadComplete] = useState(false);
+  const [result, setResult] = useState<PredictionResult | null>(null);
   const { toast } = useToast();
 
   const handleFileSelect = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +47,7 @@ const Upload = () => {
       }
 
       setFile(selectedFile);
-      setUploadComplete(false);
+      setResult(null);
     }
   }, [toast]);
 
@@ -50,37 +57,41 @@ const Upload = () => {
     setIsUploading(true);
     setUploadProgress(0);
 
-    // Simulate upload progress
-    const interval = setInterval(() => {
-      setUploadProgress(prev => {
-        if (prev >= 90) {
-          clearInterval(interval);
-          return 90;
-        }
-        return prev + Math.random() * 15;
-      });
-    }, 200);
+    const formData = new FormData();
+    formData.append('file', file);
 
     try {
-      // Simulate upload delay
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/predict`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const data: PredictionResult = await response.json();
+      setResult(data);
+
+      // Save to local storage
+      const existingResults = JSON.parse(localStorage.getItem('predictionResults') || '[]');
+      const newResults = [...existingResults, { ...data, timestamp: Date.now() }];
+      localStorage.setItem('predictionResults', JSON.stringify(newResults));
+
       setUploadProgress(100);
-      setUploadComplete(true);
       
       toast({
-        title: "Upload successful!",
-        description: "Your AnnData file has been processed and is ready for analysis.",
+        title: "Analysis complete!",
+        description: "Your file has been processed successfully.",
       });
     } catch (error) {
       toast({
         title: "Upload failed",
-        description: "There was an error uploading your file. Please try again.",
+        description: "There was an error processing your file. Please try again.",
         variant: "destructive",
       });
     } finally {
       setIsUploading(false);
-      clearInterval(interval);
     }
   }, [file, toast]);
 
@@ -179,59 +190,67 @@ const Upload = () => {
                   </div>
                   <Progress value={uploadProgress} className="w-full" />
                   <p className="text-xs text-muted-foreground">
-                    {uploadProgress < 30 && "Uploading file..."}
-                    {uploadProgress >= 30 && uploadProgress < 60 && "Validating data format..."}
-                    {uploadProgress >= 60 && uploadProgress < 90 && "Processing with PRISMA AI..."}
-                    {uploadProgress >= 90 && "Finalizing analysis..."}
+                    Uploading and analyzing file...
                   </p>
                 </div>
               </CardContent>
             </Card>
           )}
 
-          {/* Upload Success */}
-          {uploadComplete && (
+          {/* Results Display */}
+          {result && (
             <Card className="bg-scientific-blue/10 border-scientific-blue/30 shadow-glow">
               <CardContent className="pt-6">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-6 w-6 text-scientific-blue" />
-                  <div className="flex-1">
-                    <p className="font-medium">Analysis Complete</p>
-                    <p className="text-sm text-muted-foreground">
-                      Your gene expression data has been successfully processed into 30D embeddings.
-                    </p>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    {result.status !== 'success' ? (
+                      <AlertCircle className="h-6 w-6 text-destructive" />
+                    ) : (
+                      <CheckCircle className="h-6 w-6 text-scientific-blue" />
+                    )}
+                    <div>
+                      <p className="font-medium">
+                        {result.status !== 'success' ? 'Analysis Error' : 'Analysis Complete'}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        File: {result.filename} • Status: {result.status}
+                      </p>
+                    </div>
                   </div>
-                  <Button variant="prisma" asChild>
-                    <Link to="/results" className="gap-2">
-                      View Results
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
+                  
+                  <div className="bg-background/50 rounded-lg p-4">
+                    <h4 className="text-sm font-medium mb-2">Complete Response:</h4>
+                    <pre className="text-xs overflow-auto max-h-48 whitespace-pre-wrap">
+                      {JSON.stringify(result, null, 2)}
+                    </pre>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <Button variant="outline" onClick={() => {setResult(null); setFile(null);}}>
+                      Upload Another File
+                    </Button>
+                    <Button variant="prisma" asChild>
+                      <Link to="/results" className="gap-2">
+                        View All Results
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           )}
 
           {/* Upload Button */}
-          {file && !uploadComplete && (
+          {file && !result && !isUploading && (
             <Button 
               onClick={handleUpload} 
-              disabled={isUploading}
               size="lg"
               className="w-full"
               variant="prisma"
             >
-              {isUploading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  Processing...
-                </>
-              ) : (
-                <>
-                  <UploadIcon className="h-4 w-4 mr-2" />
-                  Start PRISMA Analysis
-                </>
-              )}
+              <UploadIcon className="h-4 w-4 mr-2" />
+              Start PRISMA Analysis
             </Button>
           )}
         </CardContent>
